@@ -12,6 +12,11 @@ db.on("error", (err) => console.error(err));
 db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
+const path = require("path");
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 const loginRouter = require("./routes/login");
 app.use("/login", loginRouter);
